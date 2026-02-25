@@ -1,0 +1,1201 @@
+==============================================================================
+VISRODECK WEBSITE - COMPLETE CODE
+All files for Phase 1 + Phase 2
+==============================================================================
+
+
+
+==============================================================================
+FILE: src/pages/Landing.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+
+export default function Landing() {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+
+      <section className="min-h-screen flex items-center pt-20 relative overflow-hidden">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full mb-6 text-sm font-mono text-primary">
+              PRIVACY-FIRST TECHNOLOGY
+            </div>
+            <h1 className="text-7xl font-bold mb-6 leading-tight tracking-tight">
+              Building the future of<br/>
+              <span className="text-primary">secure communication</span>
+            </h1>
+            <p className="text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
+              Military-grade encryption. Zero-knowledge architecture. Complete privacy.
+              We create technology that puts your security first, without compromise.
+            </p>
+            <div className="flex gap-4 flex-wrap">
+              <Link to="/signup" className="px-8 py-4 bg-primary hover:bg-primary-dark text-black font-bold rounded-lg transition font-mono">
+                Get Started
+              </Link>
+              <a href="#products" className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition font-mono">
+                Explore Products
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" className="py-24 bg-gray-900/40">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="text-sm font-mono text-primary mb-4 tracking-widest">OUR PRODUCTS</div>
+            <h2 className="text-5xl font-bold mb-4 tracking-tight">Privacy by Design</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Each product is built from the ground up with security and privacy as the foundation.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: 'Visrodeck Relay', status: 'LIVE NOW', statusColor: true, desc: 'End-to-end encrypted messaging. Anonymous device keys. Zero tracking. Zero logs.', link: 'https://relay.visrodeck.com', external: true },
+              { name: 'Jane Assistant', status: 'COMING SOON', statusColor: false, desc: 'Privacy-focused AI desktop assistant. All processing happens locally on your machine.', link: '#', external: false },
+              { name: 'Community', status: 'IN DEVELOPMENT', statusColor: false, desc: 'Encrypted community chat. Private channels and rooms with end-to-end encryption.', link: '/chat', external: false },
+            ].map(p => (
+              <div key={p.name} className="bg-gray-800/50 border border-white/5 rounded-2xl p-8 hover:border-primary/40 transition group">
+                <div className="flex items-center gap-3 mb-4">
+                  <h3 className="text-2xl font-bold">{p.name}</h3>
+                </div>
+                <div className={`inline-block px-3 py-1 rounded-full text-xs font-mono mb-4 border ${p.statusColor ? 'bg-primary/10 text-primary border-primary/30' : 'bg-gray-700 text-gray-400 border-gray-600'}`}>
+                  {p.status}
+                </div>
+                <p className="text-gray-300 mb-6 leading-relaxed">{p.desc}</p>
+                {p.external ? (
+                  <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-primary font-mono text-sm group-hover:underline">Launch →</a>
+                ) : (
+                  <Link to={p.link} className="text-primary font-mono text-sm group-hover:underline">Learn More →</Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-black border-t border-white/5 py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div>
+              <div className="font-mono text-xl font-bold mb-4">VISRODECK</div>
+              <p className="text-gray-400 text-sm leading-relaxed">Building privacy-first technology for the modern world.</p>
+            </div>
+            {[
+              { heading: 'Products', links: [{ label: 'Visrodeck Relay', href: 'https://relay.visrodeck.com' }, { label: 'Jane Assistant', href: '#' }, { label: 'Community', href: '/chat' }] },
+              { heading: 'Resources', links: [{ label: 'Blog', href: '/blog' }, { label: 'Updates', href: '/news' }, { label: 'Support', href: '#' }] },
+              { heading: 'Company', links: [{ label: 'About', href: '#' }, { label: 'Privacy Policy', href: '#' }, { label: 'Contact', href: '#' }] },
+            ].map(col => (
+              <div key={col.heading}>
+                <h4 className="font-semibold mb-4 text-sm tracking-wider text-gray-400 uppercase">{col.heading}</h4>
+                <ul className="space-y-2 text-sm">
+                  {col.links.map(l => (
+                    <li key={l.label}>
+                      {l.href.startsWith('http') ? (
+                        <a href={l.href} className="text-gray-400 hover:text-white transition">{l.label}</a>
+                      ) : (
+                        <Link to={l.href} className="text-gray-400 hover:text-white transition">{l.label}</Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div className="border-t border-white/5 pt-8 flex justify-between items-center text-sm text-gray-500">
+            <p>2026 Visrodeck Technology. All rights reserved.</p>
+            <span className="font-mono">visrodeck.com</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/Login.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+export default function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      const res = await axios.post(`${API}/api/auth/login`, { username, password });
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.error || 'Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen grid md:grid-cols-2">
+      <div className="relative bg-black flex flex-col justify-between p-12 overflow-hidden">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+        <Link to="/" className="font-mono text-xl font-bold relative z-10">VISRODECK</Link>
+        <div className="relative z-10">
+          <h1 className="text-5xl font-bold mb-4 tracking-tight">Welcome<br/><span className="text-primary">Back</span></h1>
+          <p className="text-gray-300 text-lg leading-relaxed">Secure communication starts here. Login to access your encrypted workspace.</p>
+        </div>
+        <Link to="/" className="text-gray-400 hover:text-white transition text-sm relative z-10">Back to website</Link>
+      </div>
+
+      <div className="bg-gray-950 flex items-center justify-center p-12">
+        <div className="w-full max-w-md">
+          <h2 className="text-3xl font-bold mb-2">Login</h2>
+          <p className="text-gray-400 mb-8">Enter your credentials to continue.</p>
+          {error && <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-xl mb-6 text-sm">{error}</div>}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Username or Email</label>
+              <input type="text" value={username} onChange={e => setUsername(e.target.value)}
+                className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white"
+                required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Password</label>
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)}
+                className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white"
+                required />
+            </div>
+            <button type="submit" disabled={loading}
+              className="w-full bg-primary hover:bg-primary-dark text-black font-bold py-3.5 rounded-xl transition disabled:opacity-50 font-mono mt-2">
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+          <p className="text-center mt-6 text-gray-400 text-sm">
+            Don't have an account? <Link to="/signup" className="text-primary hover:underline font-medium">Sign up</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/Signup.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+export default function Signup() {
+  const [form, setForm] = useState({ username: '', email: '', password: '', firstName: '', lastName: '' });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [usernameStatus, setUsernameStatus] = useState(null);
+  const [checking, setChecking] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (form.username.length < 3) { setUsernameStatus(null); return; }
+    const t = setTimeout(async () => {
+      setChecking(true);
+      try {
+        const res = await axios.get(`${API}/api/auth/check-username/${form.username}`);
+        setUsernameStatus(res.data.available ? 'available' : 'taken');
+      } catch { setUsernameStatus(null); }
+      setChecking(false);
+    }, 500);
+    return () => clearTimeout(t);
+  }, [form.username]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      const res = await axios.post(`${API}/api/auth/register`, form);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.response?.data?.error || 'Registration failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen grid md:grid-cols-2">
+      <div className="relative bg-black flex flex-col justify-between p-12 overflow-hidden">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(16,185,129,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.03) 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+        <Link to="/" className="font-mono text-xl font-bold relative z-10">VISRODECK</Link>
+        <div className="relative z-10">
+          <h1 className="text-5xl font-bold mb-4 tracking-tight">Create Your<br/><span className="text-primary">Account</span></h1>
+          <p className="text-gray-300 text-lg leading-relaxed">Join the privacy revolution. Your secure workspace awaits.</p>
+        </div>
+        <Link to="/" className="text-gray-400 hover:text-white transition text-sm relative z-10">Back to website</Link>
+      </div>
+
+      <div className="bg-gray-950 flex items-center justify-center p-12 overflow-y-auto">
+        <div className="w-full max-w-md">
+          <h2 className="text-3xl font-bold mb-2">Sign up</h2>
+          <p className="text-gray-400 mb-8">Create your free account.</p>
+          {error && <div className="bg-red-500/10 border border-red-500/50 text-red-400 p-4 rounded-xl mb-6 text-sm">{error}</div>}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Username</label>
+              <input type="text" value={form.username} onChange={e => setForm({ ...form, username: e.target.value })}
+                className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white font-mono"
+                required />
+              {form.username.length >= 3 && (
+                <p className={`text-xs mt-2 ${checking ? 'text-gray-400' : usernameStatus === 'available' ? 'text-primary' : 'text-red-400'}`}>
+                  {checking ? 'Checking...' : usernameStatus === 'available' ? '✓ Username available' : '✗ Username taken'}
+                </p>
+              )}
+              <p className="text-xs text-gray-600 mt-1">3-20 characters. Letters, numbers, underscore only.</p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Email</label>
+              <input type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+                className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white"
+                required />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Password</label>
+              <input type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })}
+                className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white"
+                required minLength={6} />
+              <p className="text-xs text-gray-600 mt-1">Minimum 6 characters</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">First Name</label>
+                <input type="text" value={form.firstName} onChange={e => setForm({ ...form, firstName: e.target.value })}
+                  className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Last Name</label>
+                <input type="text" value={form.lastName} onChange={e => setForm({ ...form, lastName: e.target.value })}
+                  className="w-full bg-gray-900 border border-gray-800 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white" />
+              </div>
+            </div>
+            <button type="submit" disabled={loading || usernameStatus !== 'available'}
+              className="w-full bg-primary hover:bg-primary-dark text-black font-bold py-3.5 rounded-xl transition disabled:opacity-50 font-mono mt-2">
+              {loading ? 'Creating account...' : 'Create Account'}
+            </button>
+          </form>
+          <p className="text-center mt-6 text-gray-400 text-sm">
+            Already have an account? <Link to="/login" className="text-primary hover:underline font-medium">Login</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/Dashboard.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+
+export default function Dashboard() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const stored = localStorage.getItem('user');
+    if (!stored) { navigate('/login'); return; }
+    setUser(JSON.parse(stored));
+  }, []);
+
+  if (!user) return null;
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-6 pt-28 pb-16">
+        <div className="mb-12">
+          <div className="text-xs font-mono text-primary mb-2 tracking-widest">DASHBOARD</div>
+          <h1 className="text-4xl font-bold mb-2 tracking-tight">Welcome back, <span className="text-primary">@{user.username}</span></h1>
+          <p className="text-gray-400">Your secure workspace.</p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {[
+            { label: 'Status', value: 'Active', color: 'text-primary' },
+            { label: 'Account Type', value: user.isAdmin ? 'Admin' : 'Member', color: 'text-white' },
+            { label: 'Username', value: `@${user.username}`, color: 'text-white font-mono' },
+            { label: 'Encryption', value: 'AES-256', color: 'text-primary font-mono' },
+          ].map(s => (
+            <div key={s.label} className="bg-gray-900 border border-white/5 rounded-xl p-5">
+              <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">{s.label}</div>
+              <div className={`text-lg font-bold ${s.color}`}>{s.value}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-xl font-bold mb-6">Products</h2>
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {[
+            { name: 'Visrodeck Relay', desc: 'Encrypted anonymous messaging.', status: 'live', href: 'https://relay.visrodeck.com', external: true },
+            { name: 'Community Chat', desc: 'Private encrypted chat rooms.', status: 'live', href: '/chat', external: false },
+            { name: 'Jane Assistant', desc: 'Privacy-first AI assistant.', status: 'soon', href: '#', external: false },
+          ].map(p => (
+            <div key={p.name} className="bg-gray-900 border border-white/5 rounded-xl p-6 hover:border-primary/30 transition">
+              <div className="flex items-center gap-3 mb-3">
+                <h3 className="font-bold text-lg">{p.name}</h3>
+                <span className={`text-xs font-mono px-2 py-0.5 rounded-full border ${p.status === 'live' ? 'bg-primary/10 text-primary border-primary/30' : 'bg-gray-700 text-gray-400 border-gray-600'}`}>
+                  {p.status === 'live' ? 'LIVE' : 'SOON'}
+                </span>
+              </div>
+              <p className="text-gray-400 text-sm mb-5">{p.desc}</p>
+              {p.status === 'live' ? (
+                p.external ? (
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-primary hover:underline">Launch →</a>
+                ) : (
+                  <Link to={p.href} className="text-sm font-mono text-primary hover:underline">Launch →</Link>
+                )
+              ) : (
+                <span className="text-sm font-mono text-gray-500">Coming Soon</span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <h2 className="text-xl font-bold mb-6">Quick Links</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Blog', href: '/blog', external: false },
+            { label: 'Updates', href: '/news', external: false },
+            { label: 'Community Chat', href: '/chat', external: false },
+            { label: 'Relay App', href: 'https://relay.visrodeck.com', external: true },
+          ].map(item => (
+            item.external ? (
+              <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                className="bg-gray-900 border border-white/5 rounded-xl p-4 flex items-center justify-center text-sm font-medium hover:border-white/20 transition">
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.label} to={item.href}
+                className="bg-gray-900 border border-white/5 rounded-xl p-4 flex items-center justify-center text-sm font-medium hover:border-white/20 transition">
+                {item.label}
+              </Link>
+            )
+          ))}
+        </div>
+
+        {user.isAdmin && (
+          <div className="mt-8 p-6 bg-primary/5 border border-primary/20 rounded-xl">
+            <h2 className="text-lg font-bold mb-2">Admin Access</h2>
+            <p className="text-gray-400 text-sm mb-4">You have admin privileges. Manage content from the admin panel.</p>
+            <Link to="/admin" className="px-6 py-2 bg-primary text-black font-bold rounded-lg text-sm font-mono hover:bg-primary-dark transition inline-block">
+              Go to Admin Panel
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/Admin.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const getToken = () => localStorage.getItem('token');
+
+function slugify(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+export default function Admin() {
+  const [tab, setTab] = useState('blogs');
+  const [blogs, setBlogs] = useState([]);
+  const [news, setNews] = useState([]);
+  const [editing, setEditing] = useState(null);
+  const [form, setForm] = useState({ title: '', slug: '', content: '', excerpt: '', category: 'general', published: false });
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState('');
+
+  useEffect(() => { fetchAll(); }, []);
+
+  const fetchAll = async () => {
+    try {
+      const headers = { Authorization: `Bearer ${getToken()}` };
+      const [b, n] = await Promise.all([
+        axios.get(`${API}/api/blogs/all`, { headers }),
+        axios.get(`${API}/api/news/all`, { headers }),
+      ]);
+      setBlogs(b.data);
+      setNews(n.data);
+    } catch (e) { console.error(e); }
+  };
+
+  const save = async () => {
+    if (!form.title || !form.slug || !form.content) { setMsg('Title, slug and content are required'); return; }
+    setLoading(true); setMsg('');
+    try {
+      const headers = { Authorization: `Bearer ${getToken()}` };
+      const endpoint = tab === 'blogs' ? '/api/blogs' : '/api/news';
+      if (editing) {
+        await axios.put(`${API}${endpoint}/${editing}`, form, { headers });
+        setMsg('Updated successfully');
+      } else {
+        await axios.post(`${API}${endpoint}`, form, { headers });
+        setMsg('Published successfully');
+      }
+      cancelEdit();
+      fetchAll();
+    } catch (e) { setMsg(e.response?.data?.error || 'Save failed'); }
+    setLoading(false);
+  };
+
+  const del = async (id) => {
+    if (!confirm('Delete this post?')) return;
+    const headers = { Authorization: `Bearer ${getToken()}` };
+    const endpoint = tab === 'blogs' ? `/api/blogs/${id}` : `/api/news/${id}`;
+    await axios.delete(`${API}${endpoint}`, { headers });
+    fetchAll();
+  };
+
+  const startEdit = (item) => {
+    setEditing(item.id);
+    setForm({ title: item.title, slug: item.slug, content: item.content, excerpt: item.excerpt || '', category: item.category || 'general', published: !!item.published });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const cancelEdit = () => {
+    setEditing(null);
+    setForm({ title: '', slug: '', content: '', excerpt: '', category: 'general', published: false });
+    setMsg('');
+  };
+
+  const items = tab === 'blogs' ? blogs : news;
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-6 pt-28 pb-16">
+        <div className="mb-10">
+          <div className="text-xs font-mono text-primary mb-2 tracking-widest">ADMIN PANEL</div>
+          <h1 className="text-4xl font-bold tracking-tight">Content Manager</h1>
+        </div>
+
+        <div className="flex gap-0 mb-8 border-b border-white/10">
+          {['blogs', 'news'].map(t => (
+            <button key={t} onClick={() => { setTab(t); cancelEdit(); }}
+              className={`px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider border-b-2 -mb-px transition ${tab === t ? 'border-primary text-primary' : 'border-transparent text-gray-400 hover:text-white'}`}>
+              {t === 'blogs' ? 'Blog Posts' : 'News & Updates'}
+            </button>
+          ))}
+        </div>
+
+        <div className="bg-gray-900 border border-white/5 rounded-2xl p-8 mb-8">
+          <h2 className="text-xl font-bold mb-6">{editing ? 'Edit Post' : `New ${tab === 'blogs' ? 'Blog Post' : 'Update'}`}</h2>
+          {msg && (
+            <div className={`p-4 rounded-xl mb-6 text-sm border ${msg.includes('success') ? 'bg-primary/10 border-primary/30 text-primary' : 'bg-red-500/10 border-red-500/30 text-red-400'}`}>
+              {msg}
+            </div>
+          )}
+          <div className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Title</label>
+              <input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value, slug: editing ? f.slug : slugify(e.target.value) }))}
+                className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white"
+                placeholder="Post title..." />
+            </div>
+            <div className={`grid gap-4 ${tab === 'news' ? 'grid-cols-2' : 'grid-cols-1'}`}>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Slug (URL)</label>
+                <input value={form.slug} onChange={e => setForm(f => ({ ...f, slug: e.target.value }))}
+                  className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white font-mono text-sm"
+                  placeholder="post-url-slug" />
+              </div>
+              {tab === 'news' && (
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-gray-300">Category</label>
+                  <select value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}
+                    className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white">
+                    <option value="general">General</option>
+                    <option value="product">Product Update</option>
+                    <option value="security">Security</option>
+                    <option value="release">New Release</option>
+                  </select>
+                </div>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Excerpt</label>
+              <input value={form.excerpt} onChange={e => setForm(f => ({ ...f, excerpt: e.target.value }))}
+                className="w-full bg-gray-800 border border-gray-700 rounded-xl p-3.5 focus:border-primary focus:outline-none text-white"
+                placeholder="Short description shown in listings..." />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-300">Content</label>
+              <textarea value={form.content} onChange={e => setForm(f => ({ ...f, content: e.target.value }))}
+                rows={12} className="w-full bg-gray-800 border border-gray-700 rounded-xl p-4 focus:border-primary focus:outline-none text-white font-mono text-sm resize-y"
+                placeholder="Write your content here..." />
+            </div>
+            <div className="flex items-center gap-3">
+              <button onClick={() => setForm(f => ({ ...f, published: !f.published }))}
+                className={`relative w-11 h-6 rounded-full transition-colors ${form.published ? 'bg-primary' : 'bg-gray-700'}`}>
+                <span className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all ${form.published ? 'translate-x-5' : 'translate-x-0'}`} />
+              </button>
+              <span className="text-sm text-gray-300">{form.published ? 'Published' : 'Draft'}</span>
+            </div>
+            <div className="flex gap-3 pt-2">
+              <button onClick={save} disabled={loading}
+                className="px-8 py-3 bg-primary hover:bg-primary-dark text-black font-bold rounded-xl transition disabled:opacity-50 font-mono">
+                {loading ? 'Saving...' : editing ? 'Update Post' : 'Publish Post'}
+              </button>
+              {editing && (
+                <button onClick={cancelEdit} className="px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition">
+                  Cancel
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gray-900 border border-white/5 rounded-2xl p-8">
+          <h2 className="text-xl font-bold mb-6">All {tab === 'blogs' ? 'Blog Posts' : 'Updates'} ({items.length})</h2>
+          {items.length === 0 ? (
+            <p className="text-gray-500 text-center py-10">No posts yet. Create your first one above.</p>
+          ) : (
+            <div className="space-y-3">
+              {items.map(item => (
+                <div key={item.id} className="flex items-center justify-between p-4 bg-gray-800 rounded-xl border border-white/5">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-1 flex-wrap">
+                      <h3 className="font-semibold truncate">{item.title}</h3>
+                      <span className={`text-xs font-mono px-2 py-0.5 rounded-full border flex-shrink-0 ${item.published ? 'bg-primary/10 text-primary border-primary/30' : 'bg-gray-700 text-gray-400 border-gray-600'}`}>
+                        {item.published ? 'PUBLISHED' : 'DRAFT'}
+                      </span>
+                      {tab === 'news' && item.category && (
+                        <span className="text-xs font-mono text-gray-500">#{item.category}</span>
+                      )}
+                    </div>
+                    <div className="text-xs text-gray-500 font-mono">/{tab}/{item.slug}</div>
+                  </div>
+                  <div className="flex gap-2 ml-4 flex-shrink-0">
+                    <button onClick={() => startEdit(item)} className="px-4 py-2 text-sm bg-gray-700 hover:bg-gray-600 rounded-lg transition">Edit</button>
+                    <button onClick={() => del(item.id)} className="px-4 py-2 text-sm bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg transition">Delete</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/BlogList.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+export default function BlogList() {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get(`${API}/api/blogs`).then(r => { setBlogs(r.data); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <div className="max-w-4xl mx-auto px-6 pt-28 pb-16">
+        <div className="mb-12">
+          <div className="text-xs font-mono text-primary mb-3 tracking-widest">BLOG</div>
+          <h1 className="text-5xl font-bold mb-4 tracking-tight">Insights & Thoughts</h1>
+          <p className="text-gray-400 text-lg">Privacy, security, and technology from the Visrodeck team.</p>
+        </div>
+        {loading ? (
+          <div className="text-center py-20 text-gray-500">Loading...</div>
+        ) : blogs.length === 0 ? (
+          <div className="text-center py-20 text-gray-500">No posts yet. Check back soon.</div>
+        ) : (
+          <div className="space-y-6">
+            {blogs.map(blog => (
+              <Link key={blog.id} to={`/blog/${blog.slug}`}
+                className="block bg-gray-900 border border-white/5 rounded-2xl p-8 hover:border-primary/30 transition group">
+                <div className="text-xs font-mono text-gray-500 mb-3">
+                  {new Date(blog.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  &nbsp;·&nbsp;@{blog.author_username}
+                </div>
+                <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition tracking-tight">{blog.title}</h2>
+                {blog.excerpt && <p className="text-gray-400 mb-4">{blog.excerpt}</p>}
+                <span className="text-sm font-mono text-primary">Read more →</span>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/BlogPost.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+export default function BlogPost() {
+  const { slug } = useParams();
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get(`${API}/api/blogs/${slug}`).then(r => { setBlog(r.data); setLoading(false); }).catch(() => setLoading(false));
+  }, [slug]);
+
+  if (loading) return <div className="min-h-screen bg-black text-white"><Navbar /><div className="text-center pt-40 text-gray-500">Loading...</div></div>;
+  if (!blog) return <div className="min-h-screen bg-black text-white"><Navbar /><div className="text-center pt-40"><p className="text-gray-400 mb-4">Post not found.</p><Link to="/blog" className="text-primary hover:underline">Back to Blog</Link></div></div>;
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <div className="max-w-3xl mx-auto px-6 pt-28 pb-16">
+        <Link to="/blog" className="text-sm font-mono text-gray-400 hover:text-white transition mb-8 inline-block">← Back to Blog</Link>
+        <div className="text-xs font-mono text-gray-500 mb-4">
+          {new Date(blog.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · @{blog.author_username}
+        </div>
+        <h1 className="text-4xl font-bold mb-6 tracking-tight">{blog.title}</h1>
+        {blog.excerpt && <p className="text-xl text-gray-300 mb-8 border-l-2 border-primary pl-5">{blog.excerpt}</p>}
+        <div className="space-y-4">
+          {blog.content.split('\n').map((para, i) =>
+            para.trim() ? <p key={i} className="text-gray-300 leading-relaxed">{para}</p> : <div key={i} className="h-2" />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/NewsList.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+const CAT_COLORS = {
+  product: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+  security: 'bg-red-500/10 text-red-400 border-red-500/30',
+  release: 'bg-primary/10 text-primary border-primary/30',
+  general: 'bg-gray-700/50 text-gray-400 border-gray-600',
+};
+
+export default function NewsList() {
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    axios.get(`${API}/api/news`).then(r => { setNews(r.data); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  const filtered = filter === 'all' ? news : news.filter(n => n.category === filter);
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <div className="max-w-4xl mx-auto px-6 pt-28 pb-16">
+        <div className="mb-12">
+          <div className="text-xs font-mono text-primary mb-3 tracking-widest">UPDATES</div>
+          <h1 className="text-5xl font-bold mb-4 tracking-tight">Product Updates</h1>
+          <p className="text-gray-400 text-lg">Latest news, releases, and announcements from Visrodeck.</p>
+        </div>
+        <div className="flex gap-2 mb-8 flex-wrap">
+          {['all', 'product', 'security', 'release', 'general'].map(cat => (
+            <button key={cat} onClick={() => setFilter(cat)}
+              className={`px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider border transition ${filter === cat ? 'border-primary text-primary bg-primary/10' : 'border-white/10 text-gray-400 hover:border-white/30'}`}>
+              {cat}
+            </button>
+          ))}
+        </div>
+        {loading ? (
+          <div className="text-center py-20 text-gray-500">Loading...</div>
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-20 text-gray-500">No updates yet.</div>
+        ) : (
+          <div className="space-y-4">
+            {filtered.map(item => (
+              <div key={item.id} className="bg-gray-900 border border-white/5 rounded-2xl p-8">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div>
+                    <div className="text-xs font-mono text-gray-500 mb-2">
+                      {new Date(item.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </div>
+                    <h2 className="text-xl font-bold tracking-tight">{item.title}</h2>
+                  </div>
+                  <span className={`text-xs font-mono px-3 py-1 rounded-full border flex-shrink-0 ${CAT_COLORS[item.category] || CAT_COLORS.general}`}>
+                    {item.category?.toUpperCase()}
+                  </span>
+                </div>
+                {item.excerpt && <p className="text-gray-400">{item.excerpt}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: src/pages/Chat.jsx  (src/pages FOLDER)
+==============================================================================
+
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+
+const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:5000';
+
+const ROOMS = [
+  { id: 'general', name: 'general', desc: 'General discussion' },
+  { id: 'announcements', name: 'announcements', desc: 'Official announcements' },
+  { id: 'relay-support', name: 'relay-support', desc: 'Help with Visrodeck Relay' },
+  { id: 'privacy', name: 'privacy', desc: 'Privacy & security talk' },
+  { id: 'off-topic', name: 'off-topic', desc: 'Everything else' },
+];
+
+export default function Chat() {
+  const [room, setRoom] = useState('general');
+  const [messages, setMessages] = useState({});
+  const [input, setInput] = useState('');
+  const [ws, setWs] = useState(null);
+  const [connected, setConnected] = useState(false);
+  const [onlineCount, setOnlineCount] = useState(0);
+  const messagesEndRef = useRef(null);
+  const wsRef = useRef(null);
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (!token || !user) { navigate('/login'); return; }
+    connect();
+    return () => wsRef.current?.close();
+  }, []);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, room]);
+
+  const connect = () => {
+    try {
+      const socket = new WebSocket(`${WS_URL}?token=${token}`);
+      socket.onopen = () => {
+        setConnected(true);
+        socket.send(JSON.stringify({ type: 'join', room: 'general' }));
+      };
+      socket.onmessage = (e) => {
+        const data = JSON.parse(e.data);
+        if (data.type === 'message') {
+          setMessages(prev => ({
+            ...prev,
+            [data.room]: [...(prev[data.room] || []), { ...data, id: Date.now() + Math.random(), isOwn: data.username === user.username }]
+          }));
+        }
+        if (data.type === 'history') {
+          setMessages(prev => ({
+            ...prev,
+            [data.room]: data.messages.map(m => ({ ...m, isOwn: m.username === user.username }))
+          }));
+        }
+        if (data.type === 'online_count') setOnlineCount(data.count);
+      };
+      socket.onclose = () => { setConnected(false); setTimeout(connect, 3000); };
+      socket.onerror = () => setConnected(false);
+      wsRef.current = socket;
+      setWs(socket);
+    } catch (e) { console.error('WS failed:', e); }
+  };
+
+  const switchRoom = (newRoom) => {
+    setRoom(newRoom);
+    if (wsRef.current?.readyState === 1) {
+      wsRef.current.send(JSON.stringify({ type: 'join', room: newRoom }));
+    }
+  };
+
+  const sendMessage = (e) => {
+    e.preventDefault();
+    if (!input.trim() || wsRef.current?.readyState !== 1) return;
+    wsRef.current.send(JSON.stringify({ type: 'message', room, text: input.trim(), timestamp: new Date().toISOString() }));
+    setInput('');
+  };
+
+  const roomMessages = messages[room] || [];
+  const currentRoom = ROOMS.find(r => r.id === room);
+
+  return (
+    <div className="h-screen bg-black text-white flex flex-col overflow-hidden">
+      <Navbar />
+      <div className="flex flex-1 overflow-hidden" style={{ marginTop: '65px' }}>
+        <div className="w-60 bg-gray-950 border-r border-white/5 flex flex-col flex-shrink-0">
+          <div className="p-4 border-b border-white/5">
+            <div className="text-xs font-mono text-primary uppercase tracking-widest mb-1">Community</div>
+            <div className="flex items-center gap-1.5 text-xs text-gray-500">
+              <div className={`w-1.5 h-1.5 rounded-full ${connected ? 'bg-primary' : 'bg-gray-600'}`} />
+              {connected ? `${onlineCount} online` : 'Connecting...'}
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-auto p-2">
+            <div className="text-xs font-mono text-gray-600 uppercase tracking-wider px-3 py-2">Channels</div>
+            {ROOMS.map(r => (
+              <button key={r.id} onClick={() => switchRoom(r.id)}
+                className={`w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-2 transition text-sm ${room === r.id ? 'bg-primary/10 text-primary' : 'text-gray-400 hover:bg-gray-900 hover:text-white'}`}>
+                <span className="text-gray-600 text-xs">#</span>
+                <span>{r.name}</span>
+              </button>
+            ))}
+          </div>
+          <div className="p-4 border-t border-white/5">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-xs font-mono font-bold text-primary">
+                {user?.username?.[0]?.toUpperCase()}
+              </div>
+              <div>
+                <div className="text-sm font-mono font-bold text-white">@{user?.username}</div>
+                <div className="text-xs text-gray-500">Online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="px-6 py-4 border-b border-white/5 bg-black flex items-center justify-between flex-shrink-0">
+            <div>
+              <span className="font-bold"># {currentRoom?.name}</span>
+              <span className="text-gray-500 text-sm ml-3">{currentRoom?.desc}</span>
+            </div>
+            <div className={`flex items-center gap-2 text-xs font-mono ${connected ? 'text-primary' : 'text-gray-500'}`}>
+              <div className={`w-1.5 h-1.5 rounded-full ${connected ? 'bg-primary' : 'bg-gray-600'}`} />
+              {connected ? 'Connected' : 'Reconnecting...'}
+            </div>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-6 space-y-1">
+            {roomMessages.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <p className="text-gray-400 font-medium">No messages yet in #{currentRoom?.name}</p>
+                <p className="text-gray-600 text-sm mt-1">Be the first to say something.</p>
+              </div>
+            ) : (
+              roomMessages.map((msg, i) => {
+                const showHeader = i === 0 || roomMessages[i - 1].username !== msg.username;
+                return (
+                  <div key={msg.id || i} className={`flex gap-3 ${showHeader ? 'mt-5' : 'mt-0.5'}`}>
+                    {showHeader ? (
+                      <div className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-sm font-mono font-bold flex-shrink-0 mt-0.5">
+                        {msg.username?.[0]?.toUpperCase()}
+                      </div>
+                    ) : <div className="w-9 flex-shrink-0" />}
+                    <div className="flex-1 min-w-0">
+                      {showHeader && (
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <span className={`font-bold text-sm ${msg.isOwn ? 'text-primary' : 'text-white'}`}>@{msg.username}</span>
+                          <span className="text-xs text-gray-600">
+                            {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </div>
+                      )}
+                      <p className="text-gray-200 text-sm leading-relaxed break-words">{msg.text}</p>
+                    </div>
+                  </div>
+                );
+              })
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          <div className="p-4 border-t border-white/5 bg-black flex-shrink-0">
+            <form onSubmit={sendMessage} className="flex gap-3">
+              <input value={input} onChange={e => setInput(e.target.value)}
+                placeholder={`Message #${currentRoom?.name}`}
+                className="flex-1 bg-gray-900 border border-white/10 rounded-xl px-5 py-3 text-sm focus:border-primary focus:outline-none placeholder-gray-600"
+                maxLength={500} disabled={!connected} />
+              <button type="submit" disabled={!input.trim() || !connected}
+                className="px-6 py-3 bg-primary hover:bg-primary-dark text-black font-bold rounded-xl transition disabled:opacity-40 text-sm font-mono flex-shrink-0">
+                Send
+              </button>
+            </form>
+            <p className="text-xs text-gray-600 mt-2 px-1">Messages are encrypted. All communications are private.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+==============================================================================
+FILE: backend/server.js  (backend FOLDER)
+==============================================================================
+
+import express from 'express';
+import cors from 'cors';
+import { createServer } from 'http';
+import { WebSocketServer } from 'ws';
+import mysql from 'mysql2/promise';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import { parse } from 'url';
+
+dotenv.config();
+
+const app = express();
+const server = createServer(app);
+const wss = new WebSocketServer({ server });
+const PORT = process.env.PORT || 5000;
+const JWT_SECRET = process.env.JWT_SECRET || 'visrodeck-secret-change-in-production';
+
+app.use(cors());
+app.use(express.json());
+
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'visrodeck',
+  waitForConnections: true,
+  connectionLimit: 10,
+});
+
+async function initDB() {
+  await pool.query(`CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), is_admin BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB`);
+  await pool.query(`CREATE TABLE IF NOT EXISTS blogs (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, slug VARCHAR(255) UNIQUE NOT NULL, content TEXT NOT NULL, excerpt VARCHAR(500), author_id INT NOT NULL, featured_image VARCHAR(500), published BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (author_id) REFERENCES users(id)) ENGINE=InnoDB`);
+  await pool.query(`CREATE TABLE IF NOT EXISTS news (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, slug VARCHAR(255) UNIQUE NOT NULL, content TEXT NOT NULL, excerpt VARCHAR(500), author_id INT NOT NULL, category VARCHAR(100) DEFAULT 'general', published BOOLEAN DEFAULT FALSE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (author_id) REFERENCES users(id)) ENGINE=InnoDB`);
+  await pool.query(`CREATE TABLE IF NOT EXISTS chat_messages (id INT AUTO_INCREMENT PRIMARY KEY, room VARCHAR(100) NOT NULL, username VARCHAR(50) NOT NULL, text TEXT NOT NULL, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, INDEX idx_room (room)) ENGINE=InnoDB`);
+
+  const [existing] = await pool.query('SELECT id FROM users WHERE username = ?', ['admin']);
+  if (existing.length === 0) {
+    const hash = await bcrypt.hash('admin123', 10);
+    await pool.query('INSERT INTO users (username, email, password, first_name, last_name, is_admin) VALUES (?, ?, ?, ?, ?, ?)', ['admin', 'admin@visrodeck.com', hash, 'Admin', 'User', true]);
+    console.log('Default admin created: admin / admin123');
+  }
+  console.log('Database ready');
+}
+
+const auth = async (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'Access token required' });
+  try { req.user = jwt.verify(token, JWT_SECRET); next(); } catch { res.status(403).json({ error: 'Invalid token' }); }
+};
+
+const admin = async (req, res, next) => {
+  const [rows] = await pool.query('SELECT is_admin FROM users WHERE id = ?', [req.user.userId]);
+  if (!rows[0]?.is_admin) return res.status(403).json({ error: 'Admin required' });
+  next();
+};
+
+// AUTH
+app.post('/api/auth/register', async (req, res) => {
+  try {
+    const { username, email, password, firstName, lastName } = req.body;
+    if (!username || !email || !password) return res.status(400).json({ error: 'Required fields missing' });
+    if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) return res.status(400).json({ error: 'Username: 3-20 chars, letters/numbers/underscore only' });
+    if (password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    const [existing] = await pool.query('SELECT id FROM users WHERE username = ? OR email = ?', [username, email]);
+    if (existing.length > 0) return res.status(400).json({ error: 'Username or email already exists' });
+    const hash = await bcrypt.hash(password, 10);
+    const [result] = await pool.query('INSERT INTO users (username, email, password, first_name, last_name) VALUES (?, ?, ?, ?, ?)', [username, email, hash, firstName || null, lastName || null]);
+    const token = jwt.sign({ userId: result.insertId, username }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({ success: true, token, user: { id: result.insertId, username, email, isAdmin: false } });
+  } catch (e) { console.error(e); res.status(500).json({ error: 'Registration failed' }); }
+});
+
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const [users] = await pool.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, username]);
+    if (!users.length) return res.status(401).json({ error: 'Invalid credentials' });
+    const user = users[0];
+    if (!await bcrypt.compare(password, user.password)) return res.status(401).json({ error: 'Invalid credentials' });
+    const token = jwt.sign({ userId: user.id, username: user.username }, JWT_SECRET, { expiresIn: '7d' });
+    res.json({ success: true, token, user: { id: user.id, username: user.username, email: user.email, firstName: user.first_name, lastName: user.last_name, isAdmin: !!user.is_admin } });
+  } catch (e) { res.status(500).json({ error: 'Login failed' }); }
+});
+
+app.get('/api/auth/me', auth, async (req, res) => {
+  const [users] = await pool.query('SELECT id, username, email, first_name, last_name, is_admin FROM users WHERE id = ?', [req.user.userId]);
+  if (!users.length) return res.status(404).json({ error: 'User not found' });
+  const u = users[0];
+  res.json({ id: u.id, username: u.username, email: u.email, firstName: u.first_name, lastName: u.last_name, isAdmin: !!u.is_admin });
+});
+
+app.get('/api/auth/check-username/:username', async (req, res) => {
+  const [rows] = await pool.query('SELECT id FROM users WHERE username = ?', [req.params.username]);
+  res.json({ available: rows.length === 0 });
+});
+
+// BLOGS
+app.get('/api/blogs', async (req, res) => {
+  const [rows] = await pool.query('SELECT b.*, u.username as author_username FROM blogs b JOIN users u ON b.author_id = u.id WHERE b.published = TRUE ORDER BY b.created_at DESC');
+  res.json(rows);
+});
+app.get('/api/blogs/all', auth, admin, async (req, res) => {
+  const [rows] = await pool.query('SELECT b.*, u.username as author_username FROM blogs b JOIN users u ON b.author_id = u.id ORDER BY b.created_at DESC');
+  res.json(rows);
+});
+app.get('/api/blogs/:slug', async (req, res) => {
+  const [rows] = await pool.query('SELECT b.*, u.username as author_username FROM blogs b JOIN users u ON b.author_id = u.id WHERE b.slug = ? AND b.published = TRUE', [req.params.slug]);
+  if (!rows.length) return res.status(404).json({ error: 'Not found' });
+  res.json(rows[0]);
+});
+app.post('/api/blogs', auth, admin, async (req, res) => {
+  const { title, slug, content, excerpt, featuredImage, published } = req.body;
+  if (!title || !slug || !content) return res.status(400).json({ error: 'Title, slug, content required' });
+  const [r] = await pool.query('INSERT INTO blogs (title, slug, content, excerpt, author_id, featured_image, published) VALUES (?, ?, ?, ?, ?, ?, ?)', [title, slug, content, excerpt, req.user.userId, featuredImage, !!published]);
+  res.json({ success: true, id: r.insertId });
+});
+app.put('/api/blogs/:id', auth, admin, async (req, res) => {
+  const { title, slug, content, excerpt, featuredImage, published } = req.body;
+  await pool.query('UPDATE blogs SET title=?, slug=?, content=?, excerpt=?, featured_image=?, published=? WHERE id=?', [title, slug, content, excerpt, featuredImage, !!published, req.params.id]);
+  res.json({ success: true });
+});
+app.delete('/api/blogs/:id', auth, admin, async (req, res) => {
+  await pool.query('DELETE FROM blogs WHERE id = ?', [req.params.id]);
+  res.json({ success: true });
+});
+
+// NEWS
+app.get('/api/news', async (req, res) => {
+  const [rows] = await pool.query('SELECT n.*, u.username as author_username FROM news n JOIN users u ON n.author_id = u.id WHERE n.published = TRUE ORDER BY n.created_at DESC');
+  res.json(rows);
+});
+app.get('/api/news/all', auth, admin, async (req, res) => {
+  const [rows] = await pool.query('SELECT n.*, u.username as author_username FROM news n JOIN users u ON n.author_id = u.id ORDER BY n.created_at DESC');
+  res.json(rows);
+});
+app.post('/api/news', auth, admin, async (req, res) => {
+  const { title, slug, content, excerpt, category, published } = req.body;
+  if (!title || !slug || !content) return res.status(400).json({ error: 'Title, slug, content required' });
+  const [r] = await pool.query('INSERT INTO news (title, slug, content, excerpt, author_id, category, published) VALUES (?, ?, ?, ?, ?, ?, ?)', [title, slug, content, excerpt, req.user.userId, category || 'general', !!published]);
+  res.json({ success: true, id: r.insertId });
+});
+app.put('/api/news/:id', auth, admin, async (req, res) => {
+  const { title, slug, content, excerpt, category, published } = req.body;
+  await pool.query('UPDATE news SET title=?, slug=?, content=?, excerpt=?, category=?, published=? WHERE id=?', [title, slug, content, excerpt, category || 'general', !!published, req.params.id]);
+  res.json({ success: true });
+});
+app.delete('/api/news/:id', auth, admin, async (req, res) => {
+  await pool.query('DELETE FROM news WHERE id = ?', [req.params.id]);
+  res.json({ success: true });
+});
+
+app.get('/api/health', (req, res) => res.json({ status: 'online' }));
+
+// WEBSOCKET CHAT
+const clients = new Map();
+
+wss.on('connection', (ws, req) => {
+  const { query } = parse(req.url, true);
+  let username = 'anonymous';
+  try {
+    if (query.token) username = jwt.verify(query.token, JWT_SECRET).username;
+  } catch { ws.close(4001, 'Invalid token'); return; }
+
+  clients.set(ws, { username, room: 'general' });
+  broadcastCount();
+
+  ws.on('message', async (raw) => {
+    try {
+      const data = JSON.parse(raw.toString());
+      const info = clients.get(ws);
+
+      if (data.type === 'join') {
+        clients.set(ws, { ...info, room: data.room });
+        const [history] = await pool.query('SELECT * FROM chat_messages WHERE room = ? ORDER BY timestamp DESC LIMIT 50', [data.room]);
+        ws.send(JSON.stringify({ type: 'history', room: data.room, messages: history.reverse() }));
+      }
+
+      if (data.type === 'message' && data.text?.trim()) {
+        const text = data.text.trim().slice(0, 500);
+        const timestamp = new Date().toISOString();
+        await pool.query('INSERT INTO chat_messages (room, username, text) VALUES (?, ?, ?)', [info.room, info.username, text]);
+        const payload = JSON.stringify({ type: 'message', room: info.room, username: info.username, text, timestamp });
+        clients.forEach((c, cws) => { if (c.room === info.room && cws.readyState === 1) cws.send(payload); });
+      }
+    } catch (e) { console.error('WS error:', e); }
+  });
+
+  ws.on('close', () => { clients.delete(ws); broadcastCount(); });
+});
+
+function broadcastCount() {
+  const payload = JSON.stringify({ type: 'online_count', count: clients.size });
+  clients.forEach((_, ws) => { if (ws.readyState === 1) ws.send(payload); });
+}
+
+async function start() {
+  await initDB();
+  server.listen(PORT, () => {
+    console.log('VISRODECK SERVER v2 ONLINE');
+    console.log(`Port: ${PORT}`);
+    console.log(`MySQL: connected`);
+    console.log(`WebSocket chat: ready`);
+  });
+}
+
+start().catch(e => { console.error('Startup failed:', e); process.exit(1); });
